@@ -1,0 +1,9 @@
+.container {
+  height: 100%;
+  width: 100%;
+}
+.contents {
+  height: auto;
+  min-height: calc(100% - 217px);
+  padding: 16px;
+}
