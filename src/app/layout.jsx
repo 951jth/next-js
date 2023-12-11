@@ -5,6 +5,7 @@ import "./globals.css";
 import StyledComponentsRegistry from "../../lib/AntdRegistry";
 import { ConfigProvider } from "antd";
 import theme from "@/theme/themeConfig";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({ children }) {
       {/* <body className={inter.className}>{children}</body> */}
       <body>
         <StyledComponentsRegistry>
-          <ConfigProvider theme={theme}>{children}</ConfigProvider>
+          <ConfigProvider theme={theme}>
+            <SessionProvider>{children}</SessionProvider>
+          </ConfigProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+const withAntdLess = require("next-plugin-antd-less");
+
+const nextConfig = withAntdLess({
   reactStrictMode: true,
   swcMinify: true,
+  // lessVarsFilePathAppendToEndOfContent: true,
   async redirects() {
     return [
       {
@@ -11,6 +15,6 @@ const nextConfig = {
       },
     ];
   },
-};
+});
 
 module.exports = nextConfig;

@@ -1,3 +1,36 @@
 .header {
-  height: 46px;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  transition: background-color 0.3s;
+  /* padding-right: 20px; */
+}
+.rowWrap {
+  margin: 0 auto;
+  width: 1024px;
+}
+.topMenu {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: unset !important;
+}
+.topMenu li span {
+  font-weight: 550;
+  line-height: 14px;
+  letter-spacing: -0.01em;
+}
+.navigation ul {
+  color: #ffffff;
+  justify-content: end;
+}
+.backColor {
+  background: #ffffff;
+}
+.backColor ul {
+  color: #000000;
 }

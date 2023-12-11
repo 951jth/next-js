@@ -4,19 +4,39 @@ import styles from "./page.module.css";
 import { useForm } from "antd/es/form/Form";
 import admin from "@/service/admin";
 import { useLocalStore } from "@/store/LocalStore";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+
+// export function getServerSideProps() {
+//   const session = useSession();
+//   console.log("session");
+// }
 
 export default function Loginpage() {
-  const { setUserToken } = useLocalStore();
   const [form] = useForm();
+  const router = useRouter();
+  const session = useSession();
+  const pathname = usePathname();
+
   async function onLogin() {
     const formValues = form.getFieldsValue();
-    console.log("formValues", formValues);
+    // admin.loginAdmin(formValues).then((res) => {
+    //   setUserToken(res?.data?.data);
+    // });
 
-    admin.loginAdmin(formValues).then((res) => {
-      setUserToken(res?.data?.data);
+    //next-auth를 활용하여, 쿠키에 유저 정보 jwt 저장
+    await signIn("admin-login", {
+      ...formValues,
+      redirect: false,
     });
   }
+
+  useEffect(() => {
+    if (!!session?.data && pathname !== "/admin") {
+      router.replace("/admin");
+    }
+  }, [session?.data]);
 
   return (
     <div className={styles.loginForm}>

@@ -10,7 +10,6 @@ export const useUserStore = create((set, get) => ({
   ...initData,
   login: (ID, PW) => {
     const { setUserInfo } = useUserStore.getState();
-    console.log("id, pw");
     admin.loginAdmin({ ID, PW }).then((res) => {
       setUserInfo(res?.data?.data);
     });
