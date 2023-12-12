@@ -20,7 +20,7 @@ export default function IntroLayout({ children }) {
     <div className={styles.container}>
       <div className={styles.contents} onScroll={onScroll}>
         <Header isBackColor={isBackColor} />
-        <div className={styles.bgHeader}>
+        {/* <div className={styles.bgHeader}>
           <Image
             src={delBg}
             // className={styles.bgImage}
@@ -29,7 +29,7 @@ export default function IntroLayout({ children }) {
             objectFit="cover"
             objectPosition="center"
           />
-        </div>
+        </div> */}
         {children}
         <Footer />
       </div>
