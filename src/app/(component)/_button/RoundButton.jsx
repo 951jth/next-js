@@ -8,6 +8,7 @@ export default function RoundButton({
   fontColor,
   buttonStyle,
   textStyle,
+  backColor,
   ...others
 }) {
   const config = theme.useToken().token;
@@ -24,6 +25,7 @@ export default function RoundButton({
           fontWeight: 550,
           lineHeight: "14px",
           letterSpacing: "-0.01em",
+          background: backColor || "",
           ...buttonStyle,
         }}
       >
@@ -31,6 +33,7 @@ export default function RoundButton({
           {`
             button span:hover {
               color: ${config.colorPrimary} !important;
+              border-color: unset;
             }
           `}
         </style>

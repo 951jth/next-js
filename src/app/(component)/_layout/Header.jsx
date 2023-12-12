@@ -3,15 +3,14 @@ import { menus } from "@/menus/menus";
 import { Button, Col, Menu, Row } from "antd";
 import { useRouter } from "next/navigation";
 import styles from "./Header.module.css";
-import logo from "@icons/delphicom.png";
-import colorLogo from "@icons/delphicom_color.png";
+import logo from "@icons/delphicom.svg";
+import colorLogo from "@icons/delphicom_color.svg";
 import Image from "next/image";
 import { Styles } from "@/util/CommonStyle";
 import RoundButton from "../_button/RoundButton";
 
 export default function Header(props) {
   const { isBackColor } = props;
-  const router = useRouter();
 
   return (
     <div className={`${styles.header} ${isBackColor ? styles.backColor : ""}`}>
@@ -33,7 +32,11 @@ export default function Header(props) {
                 label: (
                   <RoundButton
                     text="제작문의"
-                    buttonStyle={{ color: isBackColor ? "#000000" : "#888888" }}
+                    color="#555555"
+                    backColor={isBackColor ? "#555555" : "#ffffff"}
+                    buttonStyle={{
+                      color: isBackColor ? "#FFFFFF" : "#888888",
+                    }}
                   />
                 ),
               },

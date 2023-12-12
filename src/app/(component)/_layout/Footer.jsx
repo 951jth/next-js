@@ -1,34 +1,42 @@
+"use client";
 import { Flex, Select } from "antd";
 import styles from "./Footer.module.css";
 import Image from "next/image";
 import DelphicomSelect from "../_select/DelphicomSelect";
+import { isMobile } from "@/util/Responsive";
 
 export default function Footer() {
   const options = [
-    { label: "050 비즈콜", value: "biz" },
-    { label: "MOZZLE", value: "mozzle" },
+    { label: "050 비즈콜", value: "https://www.050bizcall.co.kr/" },
+    { label: "MOZZLE", value: "https://www.mozzle.co.kr/" },
   ];
   return (
     <div className={styles.footerWrap}>
-      <Flex justify="space-between">
-        <div>
-          <img
-            src={"/assets/icons/delphicom_color.png"}
+      <Flex justify={"space-between"} vertical={isMobile()}>
+        <div className={styles.col}>
+          <Image
+            src={"/assets/icons/delphicom_color.svg"}
             width={82}
+            height={40}
             alt="logo"
+            style={{ marginBottom: 28 }}
           />
           <p>
             델피콤은 개발 후 서비스 운영과 <br />
             마케팅 경험까지 공유해 드립니다.
           </p>
         </div>
-        <div>
+        <div className={`${styles.col} ${styles.company}`}>
           <p>
             델피콤㈜
             <span className={styles.division} />
-            대표이사 이대형 <br />
+            대표이사 이대형
+          </p>
+          <p>
             서울특별시 금천구 디지털로9길 32, B동 1504호 &nbsp;
-            <span className={styles.clickable}>지도보기</span> <br />
+            <span className={styles.clickable}>지도보기</span>
+          </p>
+          <p>
             02-3397-7880
             <span className={styles.division} />
             Fax 0303-3444-2377
@@ -39,11 +47,13 @@ export default function Footer() {
             Copyright©by Delphicom. all rights reserved.
           </p>
         </div>
-        <div>
+        <div className={styles.col}>
           <DelphicomSelect
             style={{ width: "170px" }}
             options={options}
             placeholder="Family Site"
+            onSelect={(e) => window.open(e)}
+            value={null}
           />
         </div>
       </Flex>

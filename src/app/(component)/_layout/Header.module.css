@@ -9,7 +9,7 @@
 }
 .rowWrap {
   margin: 0 auto;
-  width: 1024px;
+  max-width: 1024px;
 }
 .topMenu {
   height: 80px;
@@ -27,6 +27,7 @@
 .navigation ul {
   color: #ffffff;
   justify-content: end;
+  border-bottom: unset;
 }
 .backColor {
   background: #ffffff;

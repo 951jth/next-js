@@ -17,8 +17,7 @@ export default function DelphicomSelect({ placeholder, ...others }) {
         }
         open={open}
         className={styles.selectWrap}
-        suffixIcon={<Image src={open ? arrowUp : arrowDown} />}
-        menuItemSelectedIcon={<Image src={arrowUp} />}
+        suffixIcon={<Image src={open ? arrowUp : arrowDown} alt="arrow" />}
         onDropdownVisibleChange={(e) => setOpen(e)}
       ></Select>
     </>

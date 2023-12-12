@@ -1,0 +1,116 @@
+.container {
+  position: relative;
+  min-height: 1375px;
+  padding: 200px 0;
+}
+@media (max-width: 700px) {
+  .container {
+    min-height: 2500px;
+  }
+}
+.overlay {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 400px);
+  margin: 0 auto;
+  text-align: center;
+}
+.bold {
+  font-family: Roboto;
+  font-size: 56px;
+  font-weight: 550;
+  line-height: 70px;
+  letter-spacing: -0.01em;
+  font-variation-settings: "wdth" 100;
+  margin-bottom: 60px;
+}
+.emphasis {
+  color: #1397ed;
+}
+.description {
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: -0.01em;
+  margin-bottom: 70px;
+}
+.figureGroup {
+  position: relative;
+  width: 335px;
+  height: 343px;
+}
+.figure {
+  width: 230px;
+  height: 234px;
+  border: 1px;
+  opacity: 0.8;
+  text-align: left;
+}
+.figureFont {
+  font-family: Roboto;
+  font-size: 22px;
+  font-weight: 550;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  font-variation-settings: "wdth" 100;
+}
+.analysis {
+  border: 1px solid #ff7878;
+  border-radius: 100% 0px 100% 100%;
+  background: #ffcbcb80;
+  position: absolute;
+  top: 0;
+  left: 4px;
+}
+.analysis span {
+  color: #ac3d3d;
+  position: absolute;
+  top: 50px;
+  left: 60px;
+}
+.platform {
+  border: 1px solid #049dff;
+  border-radius: 100% 100% 100% 0px;
+  background: #79caff80;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.platform span {
+  color: #2984be;
+  position: absolute;
+  bottom: 48px;
+  left: 23px;
+}
+.marketing {
+  border: 1px solid #6767ff;
+  border-radius: 100% 100% 0px 100%;
+  background: #c6c5ff66;
+  position: absolute;
+  right: 0;
+  bottom: 47px;
+}
+.marketing span {
+  color: #4242a6;
+  position: absolute;
+  right: 27px;
+  bottom: 67px;
+}
+.center {
+  position: absolute;
+  top: 166px;
+  left: 120px;
+}
+.rowCenter {
+  display: flex !important;
+  justify-content: center;
+}
+.figureDescription {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
