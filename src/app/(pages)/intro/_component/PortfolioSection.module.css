@@ -1,6 +1,7 @@
 .container {
-  min-height: 1770px;
+  /* min-height: 1770px; */
   padding-top: 200px;
+  padding-bottom: 120px;
 }
 .applications {
   margin: 0 auto !important;
@@ -24,13 +25,36 @@
   text-align: center;
   color: #767676;
 }
+.card {
+  cursor: pointer;
+}
 .cardContents {
   width: 378px;
   height: 374px;
   position: relative;
 }
-@media (max-width: 378px) {
+@media (max-width: 678px) {
+  .container {
+    padding: 100px 0;
+  }
   .cardContents {
-    width: calc(100vw - 40px);
+    width: calc(100vw - 32px);
+  }
+  .applications > div {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    /* width: 100%; */
+  }
+  .section-description {
+    max-width: 270px;
+  }
+  .appTitle {
+    font-size: 24px;
+    line-height: 38px;
+    padding: 20px 0 0 0;
+  }
+  .appType {
+    font-size: 16px;
+    line-height: 26px;
   }
 }

@@ -1,20 +1,25 @@
 import { Col, Row } from "antd";
 import styles from "./ReasonSection.module.css";
 import ReasonCard from "@/app/(component)/_card/ReasonCard";
-import professional from "@icons/professional.svg";
-import money from "@icons/money.png";
-import maintenance from "@icons/maintenance.svg";
-import people from "@icons/people.svg";
+import price from "@icons/price.png";
+import code from "@icons/code.png";
+import people from "@icons/people.png";
+import touchApp from "@icons/touchApp.png";
+import documentCheck from "@icons/documentCheck.png";
 import Image from "next/image";
-import docImg from "@icons/document.svg";
+import useResponsive from "@/hook/useResponsive";
 
 export default function ReasonSection() {
+  const { mobile } = useResponsive();
   return (
     <div className={styles.container}>
       <p className={styles.bold}>
         이런 <span className={styles.emphasis}>고민</span>을 해 보신 고객이라면
       </p>
-      <Row gutter={[40, 50]} style={{ margin: "0 auto", maxWidth: 1126 }}>
+      <Row
+        className={styles.cardWrap}
+        gutter={[0, { xs: 16, sm: 16, md: 16, lg: 50 }]}
+      >
         {/* 이모티콘 임시 */}
         <Col lg={8} xs={24}>
           <ReasonCard
@@ -27,7 +32,10 @@ export default function ReasonSection() {
                 비용인가?
               </>
             }
-            icon={<Image src={money} alt="money" width={223} />}
+            icon={<Image src={price} alt="price" width={mobile ? 160 : 223} />}
+            iconStyle={
+              mobile ? { right: 18, bottom: 11 } : { right: 11, bottom: 6 }
+            }
           />
         </Col>
         <Col lg={8} xs={24}>
@@ -39,7 +47,10 @@ export default function ReasonSection() {
                 확실한가?
               </>
             }
-            icon={<Image src={maintenance} alt="maintenance" width={225} />}
+            icon={<Image src={code} alt="code" width={mobile ? 160 : 225} />}
+            iconStyle={
+              mobile ? { right: 23, bottom: 17 } : { right: 19, bottom: 15 }
+            }
           />
         </Col>
         <Col lg={8} xs={24}>
@@ -53,7 +64,9 @@ export default function ReasonSection() {
                 소통이 잘 되는가?
               </>
             }
-            icon={<Image src={people} alt="people" width={242} />}
+            icon={
+              <Image src={people} alt="people" width={mobile ? 200 : 242} />
+            }
           />
         </Col>
         <Col lg={12} xs={24}>
@@ -71,10 +84,10 @@ export default function ReasonSection() {
             }
             icon={
               <Image
-                src={professional}
-                alt="professional"
-                width={344}
-                height={334}
+                src={touchApp}
+                alt="touchApp"
+                width={mobile ? 194 : 344}
+                height={mobile ? 151 : 334}
               />
             }
           />
@@ -90,8 +103,16 @@ export default function ReasonSection() {
                 소통이 잘 되는가?
               </>
             }
-            icon={<Image src={docImg} alt="docImg" width={272} />}
-            iconStyle={{ right: 33, bottom: 32 }}
+            icon={
+              <Image
+                src={documentCheck}
+                alt="documentCheck"
+                width={mobile ? 160 : 272}
+              />
+            }
+            iconStyle={
+              mobile ? { right: 12, bottom: 22 } : { right: 14, bottom: 5 }
+            }
           />
         </Col>
       </Row>

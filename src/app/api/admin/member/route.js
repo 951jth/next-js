@@ -1,5 +1,6 @@
 import { pool } from "@/db/mariaDb";
 import { setSqlDateForm } from "@/util/Format";
+import { objectToSqlValue } from "@/util/sql";
 import dayjs from "dayjs";
 import { NextResponse } from "next/server";
 
@@ -27,7 +28,14 @@ export async function POST(req) {
     conn = await pool.getConnection();
     await conn.beginTransaction();
     await conn.query(
-      `INSERT INTO ADMIN VALUE ('${ID}','${PW}','${NAME}','${EMAIL}','${PHONE}','${CREATED}')`
+      `INSERT INTO ADMIN VALUE (${objectToSqlValue({
+        ID,
+        PW,
+        NAME,
+        EMAIL,
+        PHONE,
+        CREATED: true,
+      })})`
     );
     await conn.commit();
     return NextResponse.json({ data: { ...body, CREATED: CREATED } });

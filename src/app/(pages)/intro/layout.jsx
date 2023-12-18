@@ -6,30 +6,29 @@ import delBg from "@assets/images/delphicom_bg.png";
 import Image from "next/image";
 import { useCallback, useMemo, useRef, useState } from "react";
 import _ from "lodash";
+import { usePathname } from "next/navigation";
 
 export default function IntroLayout({ children }) {
-  const [isBackColor, setIsBackColor] = useState(false);
-  // const childrenMemo = useMemo(() => children, [children]);
-  const onScroll = useCallback((e) => {
-    const { scrollTop } = e?.currentTarget;
-    if (scrollTop >= 150) setIsBackColor(true);
-    else setIsBackColor(false);
-  }, []);
+  const pathname = usePathname();
+  const [isBackColor, setIsBackColor] = useState(pathname !== "/intro");
+
+  const onScroll = useCallback(
+    (e) => {
+      const { scrollTop } = e?.currentTarget;
+      if (pathname !== "/intro" || scrollTop >= 150) setIsBackColor(true);
+      else setIsBackColor(false);
+    },
+    [pathname]
+  );
+
+  // const childrenCallback = useCallback(() => {
+  //   return children;
+  // }, []);
 
   return (
     <div className={styles.container}>
       <div className={styles.contents} onScroll={onScroll}>
-        <Header isBackColor={isBackColor} />
-        {/* <div className={styles.bgHeader}>
-          <Image
-            src={delBg}
-            // className={styles.bgImage}
-            alt="bg"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
-          />
-        </div> */}
+        <Header isBackColor={isBackColor} setIsBackColor={setIsBackColor} />
         {children}
         <Footer />
       </div>

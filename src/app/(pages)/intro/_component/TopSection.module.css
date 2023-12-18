@@ -1,9 +1,8 @@
 .delphicomBg {
   width: 100%;
-  height: 640px;
+  height: 720px;
   max-width: 1064px;
   margin: 0 auto;
-  /* padding-top: 100px; */
   padding: 100px 20px 0 20px;
   position: relative;
   z-index: 2;
@@ -27,4 +26,15 @@
   line-height: 30px;
   letter-spacing: -0.01em;
   color: #000000;
+}
+@media (max-width: 768px) {
+  .delphicomBg {
+    padding: 20px 30px;
+  }
+  .delphicomBg p {
+    font-size: 22px;
+    font-weight: 550;
+    line-height: 32px;
+    margin-bottom: 16px;
+  }
 }

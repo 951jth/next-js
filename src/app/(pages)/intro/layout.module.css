@@ -1,20 +1,15 @@
 .container {
   height: 100%;
-  width: 100%;
+  width: 100vw;
   background: #ffffff;
 }
 .contents {
   overflow: auto;
   max-height: 100%;
+  max-width: 100vw;
   position: relative;
   padding-top: 80px;
   margin: 0 auto;
-}
-.bgHeader {
-  width: 100%;
-  height: 720px;
-  position: absolute;
-  top: 0;
 }
 .bgImage {
   z-index: 0;

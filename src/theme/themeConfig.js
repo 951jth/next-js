@@ -1,7 +1,7 @@
 const theme = {
   token: {
     fontSize: 14,
-    // colorPrimary: "#",
+    colorPrimary: "#000000",
     fontFamily: "Roboto",
   },
 };
