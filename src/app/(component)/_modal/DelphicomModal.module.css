@@ -1,0 +1,8 @@
+.modalContainer > div > div {
+  /* padding: 0 !important; */
+}
+.closeBtnWrap {
+  position: absolute;
+  top: -32px;
+  right: 0;
+}

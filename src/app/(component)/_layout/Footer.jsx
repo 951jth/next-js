@@ -16,7 +16,7 @@ export default function Footer() {
     <div className={styles.footerWrap}>
       {mobile ? (
         <div className={styles.mobile}>
-          <Flex justify="space-between" marginBottom={20}>
+          <Flex justify="space-between">
             <div>
               <Image
                 src={"/assets/icons/delphicom_color.svg"}

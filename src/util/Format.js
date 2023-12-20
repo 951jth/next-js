@@ -126,47 +126,6 @@ export function sortingByDate(items, keyName) {
   return sortData ? sortData : [];
 }
 
-//필터 초기값 세틸
-export function setInitialFilterValue(query, isClean = true, isKeyType = true) {
-  const clone = _.cloneDeep(query);
-  if (isKeyType) {
-    delete clone.keywordType;
-    delete clone.keyword;
-  }
-  const filter = {
-    page: query?.page || 0,
-    size: query?.size || 20,
-    sort: query?.sort || "id,DESC",
-    ...clone,
-  };
-  if (isKeyType) filter[query?.keywordType] = query?.keyword;
-  return isClean ? objectClean(filter) : filter;
-}
-
-//쿼리 데이트 포맷 세팅
-export function setDefaultDateRange(
-  data,
-  dateGap,
-  format,
-  fromDateName,
-  toDateName
-) {
-  //페이지가 마운트 될 때, 기본 날짜 간격 설정하여 검색 (값이 ''이면 전체로 판단)
-  //dateGap 기본 날짜 간격은 현재 날짜에서 15일로 설정
-  //초기 세팅 날짜가 정해져 있는 경우에 사용
-  const gap = dateGap || 15;
-  data[fromDateName || "fromDate"] =
-    data?.fromDate || data?.fromDate === "" || data?.format === null
-      ? data?.fromDate
-      : dayjs()
-          .subtract(gap, "day")
-          .format(format || "YYYYMMDD");
-  data[toDateName || "toDate"] =
-    data?.toDate || data?.toDate === "" || data?.format === null
-      ? data?.toDate
-      : dayjs().format(format || "YYYYMMDD");
-}
-
 // 날짜 값 비교를 위해 사용(숫자값)
 export function dateNumberFormat(date) {
   return Number(dayjs(date).format("YYYYMMDD"));
@@ -267,62 +226,6 @@ export function isVideoFilename(filename) {
   }
 }
 
-export function getMemberAuthLabel() {
-  return {
-    GENERAL: "일반 멤버",
-    LEADER: "모임장",
-    MANAGER: "운영자",
-  };
-}
-
-export function getDisplayOptions() {
-  return [
-    { label: "기", key: "GI", value: "GI" },
-    { label: "회", key: "HOE", value: "HOE" },
-    { label: "차", key: "CHA", value: "CHA" },
-    { label: "대", key: "DAE", value: "DAE" },
-  ];
-}
-
-//반복 옵션
-export function getRepeatOptions(fromDate) {
-  let date = fromDate || dayjs().format("YYYYMMDD");
-  return [
-    {
-      value: "",
-      label: "반복안함",
-    },
-    {
-      value: "EVERY_DAY",
-      label: "매일",
-    },
-    {
-      value: "EVERY_WEEK",
-      label: "매주",
-    },
-    {
-      value: "EVERY_OTHER_WEEK",
-      label: "격주",
-    },
-    {
-      value: "EVERY_MONTH",
-      label: `매월 ${dayjs(date).date()}일`,
-    },
-    {
-      value: "EVERY_MONTH_WEEK_DAY",
-      label: `매월 ${weekStringbyDate(date)} ${weekFormat(date)}요일`,
-    },
-    {
-      value: "EVERY_YEAR",
-      label: "매년",
-    },
-    {
-      value: "INPUT",
-      label: "직접설정",
-    },
-  ];
-}
-
 export function countImageFromString(string) {
   const regEx = /<(\/img|img|iframe)([^>]*)>/gi;
   let m = null;
@@ -332,25 +235,6 @@ export function countImageFromString(string) {
   }
   return count;
 }
-
-export const expressStatusText = {
-  ACCEPT: "접수",
-  // APPROVE: '승인',
-  APPROVE: "-",
-  CANCEL: "취소",
-  COMPLETE: "완료",
-  IN_PROGRESS: "진행중",
-  REQUEST: "신청",
-};
-
-export const moimJoinStatusOptions = [
-  { label: "완료", value: "COMPLETE" },
-  { label: "중지", value: "HOLD" },
-  { label: "초대중", value: "INVITE" },
-  { label: "거절", value: "REJECT" },
-  { label: "요청", value: "REQUEST" },
-  { label: "완료", value: "UNREGIST" },
-];
 
 //텍스트 내부에 이미지 전부 삭제
 export function removeImageFromText(text) {
@@ -441,4 +325,16 @@ export function setSqlDateForm(rows, format) {
     ...row,
     CREATED: dayjs(row?.CREATED).format(format || "YYYY-MM-DD hh:mm:ss"),
   }));
+}
+
+export function formatBytes(bytes, decimals = 2) {
+  if (bytes === 0) return "0 Bytes";
+
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 }
