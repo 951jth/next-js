@@ -24,7 +24,7 @@ export default function AppStoreButton({
             padding: 0;
             justify-content: center;
             font-family: Roboto;
-            font-weight: 550;
+            font-weight: 400;
             line-height: 14px;
             letter-spacing: -0.01em;
             font-variation-settings: "wdth" 100;

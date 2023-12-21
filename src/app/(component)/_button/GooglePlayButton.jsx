@@ -24,7 +24,7 @@ export default function GooglePlayButton({
             padding: 0;
             justify-content: center;
             font-family: Roboto;
-            font-weight: 550;
+            font-weight: 400;
             line-height: 14px;
             letter-spacing: -0.01em;
             font-variation-settings: "wdth" 100;
@@ -34,7 +34,9 @@ export default function GooglePlayButton({
       <Button
         style={style}
         {...others}
-        icon={<Image src={googlePlay} alt="app-store" width={15} height={18} />}
+        icon={
+          <Image src={googlePlay} alt="google-play" width={15} height={18} />
+        }
         className="googleButton"
       >
         Google Play

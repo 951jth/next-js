@@ -20,14 +20,12 @@ export default function Header(props) {
   const pathname = usePathname();
   const [menuOn, setMenuOn] = useState(false);
   const [menuRef, setMenuRef] = useState(null);
-  const [mounted, setMounted] = useState(false);
   const movePage = (path) => {
     router.push(`/intro/${path}`);
   };
   const moveMain = () => {
     router.push("/intro");
   };
-  const isMob = isMobile();
   const backColor = isBackColor || menuOn;
 
   const InquiryButton = () => {
@@ -35,7 +33,13 @@ export default function Header(props) {
       <RoundButton
         text="제작문의"
         color="#555555"
-        backColor={backColor ? "#555555" : "#ffffff"}
+        backColor={
+          pathname === "/intro/inquiry"
+            ? "#1397ED"
+            : backColor
+            ? "#555555"
+            : "#ffffff"
+        }
         buttonStyle={{
           color: backColor ? "#FFFFFF" : "#888888",
         }}
@@ -45,14 +49,11 @@ export default function Header(props) {
   };
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
     setIsBackColor(pathname !== "/intro");
   }, [pathname]);
 
   useEffect(() => {
+    //바깥 클릭시 메뉴 닫기
     const handleOutClick = (e) => {
       if (!menuRef?.contains(e?.target)) setMenuOn(false);
     };
@@ -143,7 +144,6 @@ export default function Header(props) {
           ))}
         </div>
       </>
-      {/* )} */}
     </div>
   );
 }

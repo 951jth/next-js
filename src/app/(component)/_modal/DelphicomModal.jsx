@@ -13,7 +13,7 @@ export default function DelphicomModal({ children, setOpen, ...ohters }) {
     >
       <div className={styles.closeBtnWrap}>
         <Button
-          icon={<Image src={CloseIcon} width={20} height={20} />}
+          icon={<Image src={CloseIcon} width={20} height={20} alt="close" />}
           type="text"
           onClick={() => setOpen(false)}
         ></Button>

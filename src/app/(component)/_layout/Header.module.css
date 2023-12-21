@@ -30,9 +30,9 @@
   justify-content: end;
   border-bottom: unset;
 }
-/* .navigation ul li:hover {
-  color: #1677ff !important;
-} */
+.navigation > ul > li::after {
+  border-bottom-width: 0 !important;
+}
 .backColor {
   background: #ffffff;
 }

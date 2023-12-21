@@ -1,7 +1,7 @@
 import useResponsive from "@/hook/useResponsive";
 import styles from "./DelphicomSlider.module.css";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ArrowButton from "../_button/ArrowButton";
 import { Flex } from "antd";
 
@@ -14,34 +14,38 @@ export default function DelphicomSlider({
   mobilePhotoStyle = { width: 170, height: 368 },
 }) {
   const { mobile } = useResponsive();
-  const [showNum, setShowNum] = useState(0);
+  const [showNum, setShowNum] = useState(0); //현재 슬라이더 보이는 번호
   const [slideRef, setSlideRef] = useState(null);
-  const startPoint = useRef();
-  const scrollLeft = useRef(0);
-
-  const touchStart = useCallback((e) => {
-    const point = e?.touches?.[0]?.pageX;
-    startPoint.current = point;
-  }, []);
-
-  const moveSlide = (num) => {
+  const startPoint = useRef(); //슬라이더 터치 시작지점
+  const scrollLeft = useRef(0); //현재 슬라이더 scroll x
+  //슬라이더 번호 세팅 최대 이미지보다 크거나 0보다 작을시 번호이동, (PC)
+  const countNumber = (num) => {
     setShowNum((old) => {
+      let value = 0;
       const current = old + num;
       if (current > images?.length - 1) {
-        return 0;
-      } else if (current < 0) return images.length - 1;
+        value = 0;
+      } else if (current < 0) value = images.length - 1;
       else {
-        return current;
+        value = current;
       }
+      return value;
     });
   };
 
+  const moveSlider = () => {
+    let left = mobile ? mobilePhotoStyle?.width + 40 : photoStyle?.width;
+    slideRef.scrollTo({ top: 0, left: showNum * left, behavior: "smooth" });
+    scrollLeft.current = showNum * left;
+  };
+
+  //   // 오토 스크롤 (필요시 사용)
   //   useEffect(() => {
   //     let timer = null;
   //     if (images) {
   //       timer = setInterval(() => {
   //         console.log(startPoint?.current);
-  //         !startPoint?.current && moveSlide(1);
+  //         !startPoint?.current && countNumber(1);
   //       }, 3000);
   //     }
   //     return () => {
@@ -51,78 +55,33 @@ export default function DelphicomSlider({
   //   }, [images]);
 
   useEffect(() => {
-    // const touchStart = (e) => {
-    //   const point = e?.touches?.[0]?.pageX;
-    //   startPoint.current = point;
-    // };
-    // const touchEnd = (e) => {
-    //   if (showNum >= images?.length - 1) return;
-    //   const point = e?.changedTouches?.[0]?.pageX;
-    //   const harf = mobileFrameStyle?.width / 2;
-    //   const move = point - startPoint?.current;
-    //   console.log(harf);
-    //   console.log(move);
-    //   if (move > harf && showNum !== 0) moveSlide(-1);
-    //   else if (-move > harf && !(showNum >= images?.length - 1)) moveSlide(1);
-    //   startPoint.current = null;
-    // };
+    const touchStart = (e) => {
+      const point = e?.touches?.[0]?.pageX;
+      startPoint.current = point;
+    };
 
-    if (slideRef) {
-      let left = mobile ? mobilePhotoStyle?.width + 40 : photoStyle?.width;
-      slideRef.scrollTo({ top: 0, left: showNum * left, behavior: "smooth" });
-      scrollLeft.current = showNum * left;
-    }
-  }, [showNum, slideRef]);
-
-  useEffect(() => {
-    // const touchStart = (e) => {
-    //   //   if (showNum >= images?.length - 1) return;
-    //   const point = e?.touches?.[0]?.pageX;
-    //   console.log(e);
-    //   console.log("start", point);
-    //   startPoint.current = point;
-    // };
-    // const touchEnd = (e) => {
-    //   //   if (showNum >= images?.length - 1) return;
-    //   const point = e?.changedTouches?.[0]?.pageX;
-    //   const harf = mobileFrameStyle?.width / 2;
-    //   const move = point - startPoint?.current;
-    //   console.log(harf);
-    //   console.log(move);
-    //   if (move > harf) moveSlide(1);
-    // };
-    // if (slideRef) {
-    //   slideRef?.addEventListener("touchstart", touchStart);
-    //   slideRef?.addEventListener("touchend", touchEnd);
-    // }
-    // return () => {
-    //   slideRef?.removeEventListener("touchstart", touchStart);
-    //   slideRef?.removeEventListener("touchend", touchEnd);
-    // };
     const touchEnd = (e) => {
-      console.log(images);
-      const lastIndex = images.length - 1;
-      const left = _.cloneDeep(scrollLeft?.current || 0);
+      let moveNumber;
+      const left = scrollLeft?.current || 0;
       const endPoint = e?.changedTouches?.[0]?.pageX;
-      const harf = mobileFrameStyle?.width / 2;
-      //   console.log(point);
-      console.log("left", left);
-      console.log("startPoint", startPoint?.current);
-      console.log("endPoint", endPoint);
+      const lastIndex = images?.length - 1;
+      //   console.log("left", left);
+      //   console.log("startPoint", startPoint?.current);
+      //   console.log("endPoint", endPoint);
       const move = left + (startPoint?.current - endPoint);
-      //   console.log("move", move);
-      const moveNumber = Math.round(move / mobilePhotoStyle?.width);
-      console.log(moveNumber);
-      if (moveNumber >= images?.length - 1) return console.log("return");
-      setShowNum(moveNumber);
+      moveNumber = Math.round(move / (mobilePhotoStyle?.width + 20));
+      if (moveNumber > lastIndex) moveNumber = lastIndex;
+      if (moveNumber < 0) moveNumber = 0;
+      if (moveNumber === showNum) return moveSlider();
+      else setShowNum(moveNumber);
       startPoint.current = null;
-      //   console.log(moveNumber);
     };
     const touchMove = (e) => {
       if (startPoint?.current) {
         const left = scrollLeft?.current || 0;
         const point = e?.changedTouches?.[0]?.pageX;
         const move = point - startPoint?.current;
+        if (showNum >= images?.length - 1 && move < 0) return;
         slideRef.scrollTo({
           top: 0,
           left: left - move,
@@ -130,23 +89,24 @@ export default function DelphicomSlider({
       }
     };
     if (slideRef) {
-      //   let left = mobile ? mobilePhotoStyle?.width + 40 : photoStyle?.width;
+      moveSlider();
+      if (!mobile) return;
       slideRef?.addEventListener("touchstart", touchStart);
       slideRef?.addEventListener("touchmove", touchMove);
       slideRef?.addEventListener("touchend", touchEnd);
     }
     return () => {
+      if (!mobile) return;
       slideRef?.removeEventListener("touchstart", touchStart);
       slideRef?.removeEventListener("touchmove", touchMove);
       slideRef?.removeEventListener("touchend", touchEnd);
     };
-  }, [slideRef]);
+  }, [slideRef, showNum, mobile]);
 
   return (
     <>
       {mobile ? (
         <div className={styles.mobileContainer}>
-          {/* <div className={styles.slideContainer}> */}
           <div className={styles.imageFrame} style={mobileFrameStyle}></div>
           <div
             className={styles.scrollContainer}
@@ -174,7 +134,6 @@ export default function DelphicomSlider({
               );
             })}
           </div>
-          {/* </div> */}
           <div className={styles.pointsWrap}>
             {images?.map((src, index) => {
               return (
@@ -193,7 +152,7 @@ export default function DelphicomSlider({
           <Flex justify="space-between" className={styles.slideContainer}>
             <div>
               <ArrowButton
-                onClick={() => moveSlide(-1)}
+                onClick={() => countNumber(-1)}
                 className={styles.arrowButton}
               />
             </div>
@@ -222,7 +181,7 @@ export default function DelphicomSlider({
             <div>
               <ArrowButton
                 direction="right"
-                onClick={() => moveSlide(1)}
+                onClick={() => countNumber(1)}
                 className={styles.arrowButton}
               />
             </div>
