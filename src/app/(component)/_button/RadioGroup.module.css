@@ -1,0 +1,12 @@
+.radioGroupWrap {
+  padding: 14px 30px;
+  border: 1px solid #e3e3e3;
+}
+.checkboxWrap {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 30px;
+}
+.radioLabel {
+  cursor: pointer;
+}

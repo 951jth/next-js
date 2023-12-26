@@ -11,7 +11,7 @@ export function urlDownload(url, filename) {
   link.setAttribute("download", filename);
 
   document.body.appendChild(link);
-
+  console.log("link", link);
   link.click();
 
   setTimeout(() => {

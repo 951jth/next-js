@@ -1,3 +1,4 @@
+import useNotification from "@/hook/useNotification";
 import _ from "lodash";
 
 // 오브젝트 null 삭제
@@ -122,6 +123,17 @@ export function checkRequiredValue(value, exceptKeys, errorText) {
     ) {
       errors.push(key);
     }
+  }
+  //에러 메시지 노티
+  if (errorText && errors?.length > 0) {
+    const { errorNoti } = useNotification();
+    const returnText = errors.map((key) => errorText[key]).join(", ");
+    errorNoti(
+      <>
+        <span style={{ fontWeight: "bold", color: "red" }}>{returnText}</span>
+        은(는) 필수 값입니다.
+      </>
+    );
   }
 
   return errors;

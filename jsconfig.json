@@ -4,9 +4,9 @@
       "@/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
       "@components/*": ["./src/app/(component)/*"],
-      "@assets/*": ["./public/assets/*"],
-      "@images/*": ["./public/assets/images/*"],
-      "@icons/*": ["./public/assets/icons/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@images/*": ["./src/assets/images/*"],
+      "@icons/*": ["./src/assets/icons/*"],
       "@uploads/*": ["./public/uploads/*"],
       "@service/*": ["./src/service/*"],
       "@util/*": ["./src/util/*"]

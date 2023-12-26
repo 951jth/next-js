@@ -5,6 +5,7 @@ import Image from "next/image";
 import DelphicomSelect from "../_select/DelphicomSelect";
 import { isMobile } from "@/util/Responsive";
 import useResponsive from "@/hook/useResponsive";
+import DelphicomColor from "@icons/delphicom_color.svg";
 
 export default function Footer() {
   const { mobile } = useResponsive();
@@ -19,7 +20,7 @@ export default function Footer() {
           <Flex justify="space-between">
             <div>
               <Image
-                src={"/assets/icons/delphicom_color.svg"}
+                src={DelphicomColor}
                 width={82}
                 height={40}
                 alt="logo"
@@ -64,7 +65,7 @@ export default function Footer() {
         <Flex justify={"space-between"}>
           <div className={styles.col}>
             <Image
-              src={"/assets/icons/delphicom_color.svg"}
+              src={DelphicomColor}
               width={82}
               height={40}
               alt="logo"

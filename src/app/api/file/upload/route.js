@@ -44,7 +44,9 @@ export async function POST(req) {
     await writeFile(path, buffer);
     return NextResponse.json({
       data: {
-        filepath: `./${path}`,
+        filepath: `/assets/uploads/${dayjs().format(
+          "YYYYMMDD"
+        )}/${uniqueSuffix}.${extension}`,
         size: file?.size,
         name: file?.name,
       },

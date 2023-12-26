@@ -1,27 +1,21 @@
-import { Radio } from "antd";
 import RoundCheckbox from "../_checkbox/RoundCheckbox";
+import styles from "./RadioGroup.module.css";
 
-export default function RadioGroup({ options, ...others }) {
+export default function RadioGroup({ options, values, setValues, ...others }) {
+  const onLabelClick = () => {};
   return (
     <>
-      <style jsx global>
-        {`
-          .radioGroupWrap {
-            padding: 16px 30px;
-            border: 1px solid #e3e3e3;
-          }
-          .checkboxWrap {
-            display: inline-flex;
-            align-items: center;
-            margin-right: 30px;
-          }
-        `}
-      </style>
-      <div className="radioGroupWrap">
+      <div className={styles.radioGroupWrap}>
         {options?.map((e) => (
-          <div className="checkboxWrap" key={e.value}>
-            <RoundCheckbox style={{ marginRight: 10 }} />
-            <label>{e?.label}</label>
+          <div className={styles.checkboxWrap} key={e.value}>
+            <RoundCheckbox
+              style={{ marginRight: 10 }}
+              value={values === e.value || values?.includes(e) || false}
+              setValue={(checked) => {
+                if (checked) setValues(e?.value);
+              }}
+              label={e?.label}
+            />
           </div>
         ))}
       </div>

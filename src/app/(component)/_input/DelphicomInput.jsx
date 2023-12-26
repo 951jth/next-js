@@ -1,4 +1,5 @@
 import { Input } from "antd";
+import styles from "./DelphicomInput.module.css";
 
 export default function DelphicomInput({
   className,
@@ -8,20 +9,7 @@ export default function DelphicomInput({
 }) {
   return (
     <>
-      <style jsx global>{`
-        .inputCustom {
-          height: ${height}px;
-          border: 1px solid #e3e3e3;
-          border-radius: 4px;
-          font-size: ${fontSize}px;
-          font-weight: 400;
-          letter-spacing: -0.01em;
-        }
-        .inputCustom::placeholder {
-          color: #767676;
-        }
-      `}</style>
-      <Input {...others} className={`inputCustom ${className || ""}`} />
+      <Input {...others} className={`${className} ${styles.inputCustom}`} />
     </>
   );
 }

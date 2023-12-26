@@ -3,7 +3,7 @@ import { Checkbox, Input } from "antd";
 import checkCircle from "@icons/checkCircle.png";
 import Image from "next/image";
 import dayjs from "dayjs";
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import _ from "lodash";
 import styles from "./RoundCheckbox.module.css";
 
@@ -13,27 +13,32 @@ export default memo(function RoundCheckbox({
   form,
   formName,
   size = 18,
+  label,
   style,
-  className,
 }) {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(!!value);
   const formChecked = _.debounce(() => {
+    const clone = _.cloneDeep(checked);
     setChecked((old) => {
-      if (form && formName) {
-        form.setFieldValues({ [formName]: !old });
-      }
-      if (setValue) setValue(!old);
       return !old;
     });
+    if (form && formName) {
+      form.setFieldsValue({ [formName]: !clone });
+    }
+    if (setValue) setValue(!clone);
   }, 50);
 
   useEffect(() => {
-    setChecked(value);
-  }, []);
+    setChecked(!!value);
+  }, [value]);
 
   return (
     <>
-      <span className="checkboxWrap" onClick={formChecked} style={style}>
+      <span
+        onClick={formChecked}
+        style={{ width: size, height: size, ...style }}
+        className={styles.checkboxWrap}
+      >
         <Image
           src={checkCircle}
           width={size}
@@ -41,18 +46,17 @@ export default memo(function RoundCheckbox({
           alt="checkbox"
           className={`${styles.checkImage} ${checked ? styles.active : ""}`}
           style={{ width: size, height: size }}
-          //   style={{ display: checked ? "inline-block" : "none" }}
-          //   style={{ visibility: checked ? "visible" : "hidden" }}
         />
         <div
           className={`${styles.emptyCircle} ${!checked ? styles.active : ""}`}
           style={{ width: size, height: size }}
-          //   style={{
-          //     display: checked ? "none" : "inline-block",
-          //   }}
-          //   style={{ visibility: checked ? "hidden" : "visible" }}
         ></div>
       </span>
+      {label && (
+        <label className={styles.checkboxLabel} onClick={formChecked}>
+          {label}
+        </label>
+      )}
     </>
   );
 });

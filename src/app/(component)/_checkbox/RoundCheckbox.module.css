@@ -1,9 +1,9 @@
 .checkboxWrap {
+  position: relative;
   cursor: pointer;
   display: inline-block;
-  /* width: ${size}px; */
+  /* width: ${size; */
   /* height: ${size}px; */
-  position: relative;
 }
 .emptyCircle {
   /* width: ${size}px; */
@@ -15,14 +15,20 @@
   top: 0px;
   left: 0px; */
   /* visibility: hidden; */
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 .checkImage {
-  /* position: absolute;
+  position: absolute;
   top: 0px;
-  left: 0px; */
+  left: 0px;
   display: none;
   /* visibility: hidden; */
 }
 .active {
   display: inline-block !important;
+}
+.checkboxLabel {
+  cursor: pointer;
 }

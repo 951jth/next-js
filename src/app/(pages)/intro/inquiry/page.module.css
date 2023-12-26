@@ -26,6 +26,7 @@
 }
 .required {
   color: #e91e63;
+  font-family: Roboto;
 }
 .formLabel {
   font-size: 14px;
@@ -85,8 +86,8 @@
 .cancelBtn {
   border: 0.5px solid #555555;
   margin-right: 8px;
-  width: (74px);
-  height: (34px);
+  width: 74px;
+  height: 34px;
   border-radius: 4px;
   letter-spacing: -0.01em;
   font-variation-settings: "wdth" 100;
@@ -96,4 +97,23 @@
   line-height: 14px;
   letter-spacing: -0.01em;
   font-variation-settings: "wdth" 100;
+}
+.validation {
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: right;
+  color: #1397ed;
+  position: absolute;
+  bottom: -25px;
+  right: 30px;
+}
+.requiredText {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 42px;
+  letter-spacing: -0.01em;
+  text-align: right;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 50px;
 }
