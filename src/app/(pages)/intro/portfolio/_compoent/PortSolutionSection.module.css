@@ -1,0 +1,125 @@
+.container {
+  background: linear-gradient(
+    180deg,
+    #f9fafe 12.15%,
+    rgba(249, 250, 254, 0) 100%
+  );
+  padding-top: 120px;
+}
+.contents {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+.sectionTitle {
+  font-size: 40px;
+  font-weight: 550;
+  line-height: 40px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  font-variation-settings: "wdth" 100;
+  margin-bottom: 50px;
+}
+.sectionDescription {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-bottom: 80px;
+}
+.stick {
+  width: 50px;
+  height: 3px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #000;
+  margin: 0 auto 20px auto;
+}
+.delphiVas {
+  font-family: Roboto;
+  font-size: 34px;
+  font-weight: 550;
+  line-height: 50px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  font-variation-settings: "wdth" 100;
+  margin-bottom: 50px;
+}
+.delphiVasDesc {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.subTitle {
+  font-size: 24px;
+  font-weight: 550;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  font-variation-settings: "wdth" 100;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+.systemImage {
+  margin: 10px auto 60px auto;
+  width: 660px;
+  height: 324px;
+  position: relative;
+  max-width: 100%;
+}
+.systemDescription {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.01em;
+  margin: 0 auto;
+  /* list-style-position: inside; */
+}
+
+@media (max-width: 768px) {
+  .contents {
+    padding: 0 16px;
+  }
+  .sectionTitle {
+    font-size: 30px;
+    font-weight: 550;
+    line-height: 30px;
+    margin-bottom: 34px;
+  }
+  .sectionDescription {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 50px;
+  }
+  .stick {
+    margin-bottom: 16px;
+  }
+  .delphiVas {
+    font-size: 24px;
+    line-height: 38px;
+    margin-bottom: 40px;
+  }
+  .delphiVasDesc {
+    font-size: 16px;
+    line-height: 26px;
+    text-align: left;
+    margin-bottom: 40px;
+  }
+  .subTitle {
+    margin-top: 65px;
+    margin-bottom: 40px;
+  }
+  .systemImage {
+    margin: 10px auto 50px auto;
+    width: 368px;
+    height: 176px;
+  }
+  .systemDescription {
+    font-size: 16px;
+    line-height: 26px;
+    padding-left: 16px;
+  }
+}

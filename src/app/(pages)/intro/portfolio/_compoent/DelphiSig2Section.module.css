@@ -1,0 +1,79 @@
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+.title {
+  font-size: 34px;
+  font-weight: 550;
+  line-height: 50px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  font-variation-settings: "wdth" 100;
+  margin-bottom: 60px;
+}
+.sig2Image {
+  width: 580px;
+  height: 280px;
+  position: relative;
+  margin: 0 auto 80px auto;
+  max-width: 100%;
+}
+.sig2ExplainList {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  margin-bottom: 80px;
+}
+.subTitle {
+  font-size: 24px;
+  font-weight: 550;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  font-variation-settings: "wdth" 100;
+  margin-bottom: 50px;
+}
+.stick {
+  width: 50px;
+  height: 3px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #000;
+  margin: 120px auto 20px auto;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  .title {
+    font-size: 24px;
+    font-weight: 550;
+    line-height: 39px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    font-variation-settings: "wdth" 100;
+    margin-bottom: 40px;
+  }
+  .stick {
+    margin: 105px auto 15px auto;
+  }
+  .sig2Image {
+    width: 358px;
+    height: 173px;
+    margin: 0 auto 50px auto;
+  }
+  .sig2ExplainList {
+    font-size: 16px;
+    line-height: 26px;
+    padding-left: 16px;
+    margin-bottom: 60px;
+  }
+  .subTitle {
+    font-size: 20px;
+    font-weight: 550;
+    line-height: 20px;
+    margin-bottom: 40px;
+  }
+}

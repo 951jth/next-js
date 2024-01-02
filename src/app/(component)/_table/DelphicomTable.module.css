@@ -1,0 +1,53 @@
+.tableContainer {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.customTable {
+  border-top: 0.5px solid #cccccc;
+  border-bottom: 0.5px solid #cccccc;
+  border-collapse: collapse;
+  width: 100%;
+}
+.customTable > thead > tr > th {
+  background-color: #f9fafe;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  padding: 8px 0;
+}
+.customTable > tbody > tr > th {
+  background-color: #f7fbff;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #016ac3;
+  padding: 8px 16px 8px 16px;
+  border-bottom: 0.5px solid #e3e3e3;
+  border-collapse: collapse;
+}
+.customTable > tbody > tr > td {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  border-bottom: 0.5px solid #e3e3e3;
+  padding: 8px 40px;
+  border-collapse: collapse;
+}
+.customTable ul li {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+@media (max-width: 768px) {
+  .customTable > tbody > tr > th {
+  }
+}

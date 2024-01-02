@@ -5,7 +5,7 @@ import styles from "./UploadButton.module.css";
 export default function UploadButton({
   fileList,
   setFileList,
-  accept,
+  accept = "image/*,.pdf,.xlx,.xlsx,.zip,.html",
   ...others
 }) {
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
@@ -21,6 +21,7 @@ export default function UploadButton({
           fileList={fileList || []}
           onChange={handleChange}
           maxCount={1}
+          accept={accept}
         >
           <Button type="primary" block={true}>
             파일첨부

@@ -9,3 +9,8 @@
 .inputCustom::placeholder {
   color: #767676;
 }
+@media (max-width: 768px) {
+  .inputCustom {
+    font-size: 16px;
+  }
+}

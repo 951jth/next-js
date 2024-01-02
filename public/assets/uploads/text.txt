@@ -1,1 +1,1 @@
-set file storage folder, don't delete it
+set file storage folder, please don't delete it

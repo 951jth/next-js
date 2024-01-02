@@ -11,9 +11,12 @@ import Head from "next/head";
 import { isMobile } from "@/util/Responsive";
 import { useEffect, useState } from "react";
 import useResponsive from "@/hook/useResponsive";
+import KakaoMap from "@/app/(component)/_map/KaKaoMap";
+import Script from "next/script";
 
 export default function introMain() {
   const { mobile } = useResponsive();
+
   // const isMob = isMobile();
   // const [mobile, setMobile] = useState(false);
 
@@ -23,6 +26,9 @@ export default function introMain() {
 
   return (
     <>
+      <Head>
+        <link rel="shortcut icon" href="/src/app/favicon_48.png" />
+      </Head>
       <style jsx>
         {`
           .bgImage {
@@ -47,6 +53,7 @@ export default function introMain() {
       <ReasonSection />
       <PortfolioSection />
       <ProcessSection />
+      {/* <KakaoMap /> */}
     </>
   );
 }

@@ -18,7 +18,7 @@
   height: 130px;
   position: absolute;
   top: -24px;
-  left: -24px;
+  left: -26px;
 }
 .activeArrow {
   width: 243px;
@@ -160,11 +160,17 @@
   }
 }
 @media (max-width: 375px) {
-  /* .processWrap {
-    padding-left: 5px;
-    padding-right: 5px;
-  } */
-  /* .process {
-    width: 50%;
-  } */
+  .container {
+    padding: 120px 4px 50px 4px;
+  }
+  .arrow {
+    width: 156px;
+    left: -19px;
+  }
+  .arrowLabel {
+    font-size: 13px;
+  }
+  .arrowWrap {
+    max-width: 100%;
+  }
 }

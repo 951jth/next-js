@@ -1,14 +1,5 @@
 "use client";
-import {
-  Button,
-  Col,
-  Flex,
-  Form,
-  Input,
-  Row,
-  Upload,
-  notification,
-} from "antd";
+import { Button, Col, Form, Row } from "antd";
 import { useForm } from "antd/es/form/Form";
 import styles from "./page.module.css";
 import inquiry from "@/service/inquiry";
@@ -26,6 +17,7 @@ import UploadButton from "@/app/(component)/_button/UploadButton";
 import BudgetInput from "@/app/(component)/_input/BudgetInput";
 import { checkRequiredValue, removeEmpty } from "@/util/Global";
 import Image from "next/image";
+import useResponsive from "@/hook/useResponsive";
 
 export default function InquiryPage() {
   const [form] = useForm();
@@ -33,16 +25,23 @@ export default function InquiryPage() {
   const [fileList, setFileList] = useState([]);
   const [downloadUrl, setDownloadUrl] = useState(null);
   const [agreement, setAgreement] = useState(false);
+  const [serviceType, setServiceType] = useState([]);
+  const [isError, setIsError] = useState(false); //이메일 입력
+  const { mobile } = useResponsive();
+
   const serviceOptions = [
     { label: "웹 개발", value: "WEB" },
     { label: "앱 개발", value: "APP" },
   ];
-  const [serviceType, setServiceType] = useState([]);
-  const [isError, setIsError] = useState(false);
 
   const onSubmit = async () => {
-    const formValues = form.getFieldsValue();
-    const allValues = { ...formValues, service_type: serviceType };
+    const { budget, ...formValues } = form.getFieldsValue();
+    const allValues = {
+      ...formValues,
+      service_type: serviceType,
+      budget: budget.replaceAll(",", ""),
+    };
+    console.log(allValues);
     const errorText = {
       company_name: "회사명",
       name: "이름/직함",
@@ -76,23 +75,11 @@ export default function InquiryPage() {
     }
   };
 
-  const onUpload = () => {
-    if (fileList?.[0]) {
-      file.uploadFile(fileList?.[0]).then(async (res) => {
-        const data = res?.data?.data;
-        setDownloadUrl(data.filepath);
-        // urlDownload(data?.filepath, data.name);
-      });
-    }
-  };
-
   const onSearch = (id) => {
     inquiry.getProductionInquiryById(id).then((res) => {
       console.log(res);
     });
   };
-
-  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
 
   const Required = <span className={styles.required}>*</span>;
 
@@ -100,7 +87,7 @@ export default function InquiryPage() {
     <div className={styles.container}>
       <Row className={styles.titleRow}>
         <Col lg={8} md={24} sm={24} xs={24}>
-          <span className={styles.title}>제작문의</span>
+          <p className={styles.title}>제작문의</p>
         </Col>
         <Col lg={16} md={24} sm={24} xs={24}>
           <p className={styles.description} style={{ marginBottom: 8 }}>
@@ -112,81 +99,104 @@ export default function InquiryPage() {
             <span className={styles.emphasis}>델피콤</span>은&nbsp;
             <span className={styles.emphasis}>20년간의 경험과 노하우</span>를
             바탕으로 클라이언트에게
-            <br />
-            수준 높은 상상이상의 WEB, APP을 만들어 드립니다.
+            {mobile ? " " : <br />}
+            수준 높은 상상이상의 {mobile && <br />}WEB, APP을 만들어 드립니다.
           </p>
         </Col>
       </Row>
       <p className={styles.requiredText}>{Required}필수입력</p>
       <Form form={form} layout="vertical">
-        <Row gutter={[60, 50]}>
+        <Row gutter={mobile ? 0 : 60}>
           <Col md={24} lg={12} sm={24} xs={24}>
-            <p className={styles.formLabel}>회사명{Required}</p>
-            <Form.Item name="company_name" noStyle rules={[{ required: true }]}>
-              <DelphicomInput placeholder="회사명을 입력해 주세요" />
-            </Form.Item>
-          </Col>
-          <Col md={24} lg={12} sm={24} xs={24}>
-            <p className={styles.formLabel}>서비스 종류{Required}</p>
-            <RadioGroup
-              options={serviceOptions}
-              values={serviceType}
-              setValues={setServiceType}
-            />
-            <p className={styles.validation}>서비스 종류를 선택해주세요.</p>
-          </Col>
-          <Col md={24} lg={12} sm={24} xs={24}>
-            <p className={styles.formLabel}>이름/직함{Required}</p>
-            <Form.Item name="name" noStyle rules={[{ required: true }]}>
-              <DelphicomInput placeholder="이름/직함을 입력해 주세요" />
-            </Form.Item>
-          </Col>
-          <Col md={24} lg={12} sm={24} xs={24}>
-            <p className={styles.formLabel}>예산 범위{Required}</p>
-            <Form.Item name="budget" noStyle rules={[{ required: true }]}>
-              <BudgetInput
-                placeholder="예산 범위를 입력해 주세요"
-                isComma={true}
-              />
-            </Form.Item>
-          </Col>
-          <Col md={24} lg={12} sm={24} xs={24}>
-            <p className={styles.formLabel}>연락처{Required}</p>
-            <Form.Item name="phone" noStyle rules={[{ required: true }]}>
-              <DelphicomInput placeholder="연락처를 입력해 주세요" />
-            </Form.Item>
-          </Col>
-          <Col md={24} lg={12} sm={24} xs={24}>
-            <p className={styles.formLabel}>참고 문서{Required}</p>
-            <UploadButton fileList={fileList} setFileList={setFileList} />
-            <p className={styles.validation}>
-              여러 개의 파일은 압축해서 20MB 이하 ZIP 파일로 올려주세요.
-            </p>
-          </Col>
-          <Col md={24} lg={12} sm={24} xs={24}>
-            <p className={styles.formLabel}>이메일{Required}</p>
-            <Form.Item
-              name="email"
-              noStyle
-              rules={[{ required: true }, { type: "email", warningOnly: true }]}
-            >
-              <DelphicomInput
-                placeholder="이메일을 입력해 주세요"
-                onChange={(e) => {
-                  setIsError(!isEmail(e?.target?.value));
+            <Row gutter={[0, { xs: 30, sm: 30, md: 30, lg: 50 }]}>
+              <Col span={24}>
+                <p className={styles.formLabel}>회사명{Required}</p>
+                <Form.Item
+                  name="company_name"
+                  noStyle
+                  rules={[{ required: true }]}
+                >
+                  <DelphicomInput placeholder="회사명을 입력해 주세요" />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <p className={styles.formLabel}>이름/직함{Required}</p>
+                <Form.Item name="name" noStyle rules={[{ required: true }]}>
+                  <DelphicomInput placeholder="이름/직함을 입력해 주세요" />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <p className={styles.formLabel}>연락처{Required}</p>
+                <Form.Item name="phone" noStyle rules={[{ required: true }]}>
+                  <DelphicomInput placeholder="연락처를 입력해 주세요" />
+                </Form.Item>
+              </Col>
+              <Col
+                span={24}
+                style={{
+                  paddingBottom: mobile ? 30 : 0,
+                  marginBottom: mobile ? 0 : 50,
                 }}
-              />
-            </Form.Item>
-            <p
-              className={styles.validation}
-              style={isError ? { color: "#E91E63" } : {}}
-            >
-              {isError
-                ? "이메일 형식이 맞지 않습니다."
-                : "입력하신 메일로 회신을 드리오니 메일 주소를 정확히 입력해 주세요."}
-            </p>
+              >
+                <p className={styles.formLabel}>이메일{Required}</p>
+                <Form.Item
+                  name="email"
+                  noStyle
+                  rules={[
+                    { required: true },
+                    { type: "email", warningOnly: true },
+                  ]}
+                >
+                  <DelphicomInput
+                    placeholder="이메일을 입력해 주세요"
+                    onChange={(e) => {
+                      setIsError(!isEmail(e?.target?.value));
+                    }}
+                  />
+                </Form.Item>
+                <p
+                  className={styles.validation}
+                  style={isError ? { color: "#E91E63" } : {}}
+                >
+                  {isError
+                    ? "이메일 형식이 맞지 않습니다."
+                    : "입력하신 메일로 회신을 드리오니 메일 주소를 정확히 입력해 주세요."}
+                </p>
+              </Col>
+            </Row>
           </Col>
-          <Col xs={24}>
+          <Col md={24} lg={12} sm={24} xs={24}>
+            <Row gutter={[0, { xs: 30, sm: 30, md: 30, lg: 50 }]}>
+              <Col span={24}>
+                <p className={styles.formLabel}>서비스 종류{Required}</p>
+                <RadioGroup
+                  options={serviceOptions}
+                  values={serviceType}
+                  setValues={setServiceType}
+                />
+                <p className={styles.validation}>서비스 종류를 선택해주세요.</p>
+              </Col>
+
+              <Col span={24}>
+                <p className={styles.formLabel}>예산 범위{Required}</p>
+                <Form.Item name="budget" noStyle rules={[{ required: true }]}>
+                  <BudgetInput
+                    placeholder="예산 범위를 입력해 주세요"
+                    isComma={true}
+                  />
+                </Form.Item>
+              </Col>
+
+              <Col span={24} style={{ paddingBottom: mobile ? 30 : 0 }}>
+                <p className={styles.formLabel}>참고 문서</p>
+                <UploadButton fileList={fileList} setFileList={setFileList} />
+                <p className={styles.validation}>
+                  여러 개의 파일은 압축해서 20MB 이하 ZIP 파일로 올려주세요.
+                </p>
+              </Col>
+            </Row>
+          </Col>
+          <Col span={24}>
             <p className={styles.formLabel}>문의 내용</p>
             <Form.Item name="contents" noStyle>
               <DelphicomTextarea
@@ -217,11 +227,18 @@ export default function InquiryPage() {
             수집/이용에 동의하지 않으시는 경우 상담이 불가합니다.
           </p>
         </div>
-        <div style={Styles.rowVerticalCenter} className={styles.agreementRow}>
+        <div
+          style={mobile ? { display: "flex" } : Styles.rowVerticalCenter}
+          className={styles.agreementRow}
+        >
           <RoundCheckbox
             value={agreement}
             setValue={setAgreement}
-            style={{ marginRight: 8, marginLeft: 16 }}
+            style={
+              mobile
+                ? { marginRight: 6, marginLeft: 14, top: 3 }
+                : { marginRight: 8, marginLeft: 16 }
+            }
           />
           <p className={styles.checkAgreement}>
             <span className={styles.essential}>(필수)</span> 개인정보 수집 및

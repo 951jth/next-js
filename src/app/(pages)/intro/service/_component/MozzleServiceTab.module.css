@@ -1,0 +1,339 @@
+.container {
+  /* overflow: hidden; */
+}
+.title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 550;
+  line-height: 50px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  font-variation-settings: "wdth" 100;
+}
+.gotoSiteRow {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.gotoSiteBtn {
+  width: 121px;
+  height: 40px !important;
+  border-radius: 5px !important;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  margin-right: 10px;
+}
+.explain {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.01em;
+  margin-bottom: 70px;
+}
+.mozzleMainContainer {
+  position: relative;
+  max-width: 1024px;
+  height: 564px;
+  padding-top: 90px;
+  padding-left: 70px;
+}
+.overlay {
+  position: absolute;
+  top: 90px;
+  left: 70px;
+}
+.mozzleBoldFont {
+  font-size: 34px;
+  font-weight: 550;
+  line-height: 50px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  font-variation-settings: "wdth" 100;
+}
+.goMozzle {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  margin-top: 56px;
+  margin-bottom: 18px;
+}
+.mozzleSubFont {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 34px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #555555;
+}
+.mozzleNote {
+  width: 949px;
+  height: 616px;
+  position: absolute;
+  top: 104px;
+  left: 257px;
+  z-index: 2;
+}
+.mozzleSecondContainer {
+  max-width: 1024px;
+  height: 817px;
+  background: #effbff;
+  position: relative;
+}
+.imageFrame {
+  width: 290px;
+  height: 595px;
+  border-radius: 20px;
+  position: relative;
+  background: #ffffff;
+  box-shadow: 10px 30px 50px 0px #0000001a, 0px 0px 14px 0px #00000014 inset;
+}
+.mozzleImage {
+  width: 262px;
+  height: 567px;
+  position: absolute;
+  top: 14px;
+  left: 14px;
+}
+.imageLeft {
+  position: absolute;
+  top: 100px;
+  left: 70px;
+}
+.imageRight {
+  position: absolute;
+  top: 122px;
+  left: 330px;
+}
+.textContainer {
+  position: absolute;
+  top: 268px;
+  right: 65px;
+}
+.font22 {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+}
+.mozzleThirdContainer {
+  padding-top: 100px;
+  padding-bottom: 140px;
+}
+.emphasis {
+  color: #6ed0f1;
+}
+.conveniencesWrap {
+  margin-top: 60px;
+}
+.convenience {
+  text-align: center;
+}
+.convenience > p {
+  margin-top: 16px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.mozzleFourthContainer {
+  max-width: 1024px;
+  height: 481px;
+  background: #f2f8ff;
+  position: relative;
+}
+.scheduleImageWrap {
+  position: absolute;
+  top: -70px;
+  left: 130px;
+}
+.scheduleTextContainer {
+  position: absolute;
+  top: 100px;
+  right: 137px;
+}
+.mozzleFifthContainer {
+  padding-top: 144px;
+}
+.enjoyGolfWrap {
+  margin-top: 70px;
+}
+.enjoyGolfItem p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.radiusBox {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 44px;
+}
+.appDownBtn {
+  width: 103px;
+  height: 40px !important;
+  border-radius: 5px !important;
+  background: #23cec9 !important;
+}
+@media (max-width: 768px) {
+  .container {
+    overflow: hidden;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 0 16px;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 38px;
+  }
+  .gotoSiteRow {
+    margin-top: 0;
+    margin-bottom: 40px;
+  }
+  .explain {
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+    white-space: nowrap;
+    margin-bottom: 40px;
+  }
+  .mozzleMainContainer {
+    width: 100%;
+    height: 564px;
+  }
+  .mozzleNote {
+    width: 631px;
+    height: 410px;
+    top: unset;
+    left: -77px;
+    bottom: -78px;
+  }
+  .overlay {
+    top: 70px;
+    left: 40px;
+  }
+  .mozzleBoldFont {
+    font-size: 24px;
+    font-weight: 550;
+    line-height: 38px;
+  }
+  .goMozzle {
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+  .mozzleSubFont {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .imageFrame {
+    width: 190px;
+    height: 388px;
+  }
+  .mozzleSecondContainer {
+    width: 100%;
+    height: 741px;
+  }
+  .mozzleImage {
+    width: 170px;
+    height: 368px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .textContainer {
+    position: static;
+    padding-top: 93px;
+  }
+  .mozzleBoldFont {
+    text-align: center;
+    font-size: 24px;
+    line-height: 38px;
+  }
+  .font22 {
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+  }
+  .mobileImageContainer {
+    position: relative;
+    max-width: 338px;
+    height: 403px;
+    margin: 50px auto 0 auto;
+  }
+  .imageLeft {
+    top: 0;
+    left: 0;
+  }
+  .imageRight {
+    top: 5px;
+    left: 148px;
+  }
+  .convenience {
+    height: 160px;
+  }
+  .conveniencesWrap {
+    margin-top: 42px;
+  }
+  .conveniencesWrap p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-top: 12px;
+  }
+  .mozzleFourthContainer {
+    width: 100%;
+    height: 740px;
+    padding-top: 70px;
+  }
+  .scheduleTextContainer {
+    position: static;
+  }
+  .scheduleImageWrap {
+    position: static;
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+  }
+  .mozzleFifthContainer {
+    padding-top: 120px;
+  }
+  .enjoyGolfWrap {
+    margin-top: 40px;
+  }
+  .enjoyGolfItem p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .radiusBox {
+    width: 62px;
+    height: 62px;
+  }
+  .gotoSiteBtn {
+    width: 113px;
+    margin-right: 8px;
+  }
+  @media (max-width: 360px) {
+    .mozzleBoldFont {
+      font-size: 22px;
+    }
+    .font22 {
+      font-size: 16px;
+    }
+  }
+}

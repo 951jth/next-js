@@ -1,4 +1,5 @@
 import { Input } from "antd";
+import { useEffect, useState } from "react";
 
 export default function DelphicomTextarea({
   height = "156px",
@@ -7,10 +8,12 @@ export default function DelphicomTextarea({
   showCount,
   maxLength = 1000,
   isCount,
+  value,
+  onChange,
   ...others
 }) {
   const { TextArea } = Input;
-  const { value } = others;
+  const [text, setText] = useState(value);
   return (
     <>
       <style jsx>
@@ -40,12 +43,27 @@ export default function DelphicomTextarea({
           .countBold {
             color: #000000;
           }
+          @media (max-width: 768px) {
+            .customTextArea {
+              height: 245px;
+              font-size: 16px;
+            }
+          }
         `}
       </style>
-      <TextArea className={`customTextArea ${className || ""}`} {...others} />
+      <TextArea
+        className={`customTextArea ${className || ""}`}
+        value={text}
+        onChange={(e) => {
+          const text = e?.target?.value;
+          if (showCount && text?.length > maxLength) return;
+          else setText(text);
+        }}
+        {...others}
+      />
       {showCount && (
         <p className="countText">
-          <span className="countBold">{value || 0}</span> / {maxLength}
+          <span className="countBold">{text?.length || 0}</span> / {maxLength}
         </p>
       )}
     </>

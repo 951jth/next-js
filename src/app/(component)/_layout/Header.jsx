@@ -15,7 +15,7 @@ import { use, useEffect, useState } from "react";
 import { isMobile } from "@/util/Responsive";
 
 export default function Header(props) {
-  const { isBackColor, setIsBackColor } = props;
+  const { isBackColor, setIsBackColor, isShadow } = props;
   const router = useRouter();
   const pathname = usePathname();
   const [menuOn, setMenuOn] = useState(false);
@@ -42,6 +42,7 @@ export default function Header(props) {
         }
         buttonStyle={{
           color: backColor ? "#FFFFFF" : "#888888",
+          border: "unset",
         }}
         onClick={() => movePage("inquiry")}
       />
@@ -50,6 +51,7 @@ export default function Header(props) {
 
   useEffect(() => {
     setIsBackColor(pathname !== "/intro");
+    if (menuOn) setMenuOn(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -63,7 +65,9 @@ export default function Header(props) {
 
   return (
     <div
-      className={`${styles.header} ${backColor ? styles.backColor : ""}`}
+      className={`${styles.header} ${backColor ? styles.backColor : ""}
+      ${isShadow && backColor ? styles.backShadow : ""}
+      `}
       ref={setMenuRef}
     >
       <Row justify={"space-between"} className={styles.rowWrap}>
@@ -94,6 +98,7 @@ export default function Header(props) {
             onClick={() => setMenuOn(!menuOn)}
           />
         </Col>
+
         <Col span={20} className={styles.navigation}>
           <Menu
             items={[
@@ -106,7 +111,7 @@ export default function Header(props) {
             mode="horizontal"
             onSelect={(key) => {
               const path = key?.item?.props?.path;
-              // path && router.push(path);
+              path && router.push(path);
             }}
             className={styles.topMenu}
             selectedKeys={pathname}
@@ -133,11 +138,13 @@ export default function Header(props) {
         <div className={`${styles.mobileMenu} ${menuOn ? styles.menuOn : ""}`}>
           {menus.map((item) => (
             <div
-              span={24}
               className={`${styles.mobileMenuRow} ${
                 item?.key === pathname ? styles.mobileMenuActive : ""
               }`}
               key={item?.key}
+              onClick={() => {
+                item?.path && router.push(item?.path);
+              }}
             >
               <span>{item?.label}</span>
             </div>

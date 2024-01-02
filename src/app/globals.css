@@ -154,4 +154,7 @@ a {
     letter-spacing: -0.01em;
     text-align: center;
   }
+  .modalContainer > div > div {
+    padding: 0;
+  }
 }

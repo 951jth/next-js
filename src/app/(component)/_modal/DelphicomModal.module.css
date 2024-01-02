@@ -1,8 +1,25 @@
-.modalContainer > div > div {
-  /* padding: 0 !important; */
-}
 .closeBtnWrap {
   position: absolute;
   top: -32px;
   right: 0;
+}
+.closeIcon {
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 768px) {
+  .closeIcon {
+    width: 14px;
+    height: 14px;
+    top: -26px;
+  }
+  .modalContainer {
+    padding: 0 !important;
+  }
+  /* .modalContainer > div {
+    padding: 0;
+  } */
+  div.ant-modal-content {
+    padding: 0 !important;
+  }
 }

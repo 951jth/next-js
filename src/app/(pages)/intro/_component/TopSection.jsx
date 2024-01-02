@@ -2,9 +2,11 @@
 import useResponsive from "@/hook/useResponsive";
 import styles from "./TopSection.module.css";
 import RoundButton from "@/app/(component)/_button/RoundButton";
+import { useRouter } from "next/navigation";
 
 export default function TopSection() {
   const { mobile } = useResponsive();
+  const router = useRouter();
   return (
     <div className={styles.delphicomBg}>
       {mobile ? (
@@ -43,6 +45,7 @@ export default function TopSection() {
         width={160}
         height={50}
         fontColor={"#FFFFFF"}
+        onClick={() => router.push(`/intro/inquiry`)}
         ghost
       />
     </div>

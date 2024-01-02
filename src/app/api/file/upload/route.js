@@ -4,6 +4,7 @@ import { readFile, unlink } from "fs";
 import dayjs from "dayjs";
 import { formatBytes } from "@/util/Format";
 
+//파일 업로드 (프로젝트 upload 폴더에 저장)
 export async function POST(req) {
   let path = null;
   let errorMsg = null;
